@@ -131,9 +131,9 @@
             <h2><code>$page</code></h2>
             <ul>
                 <li class="fragment"><code>$page-&gt;id</code></li>
-                <li class="fragment"><code>$page-&gt;url</code>, <code>$page-&gt;name</code></li>
-                <li class="fragment"><code>$page-&gt;created</code>, <code>$page-&gt;modified</code></li>
-                <li class="fragment"><code>$page-&gt;get("field")</code> oder <code>page-&gt;field</code></li>
+                <li class="fragment"><code>$page-&gt;url</code></li>
+                <li class="fragment"><code>$page-&gt;get("field")</code></li>
+                <li class="fragment"><code>$page-&gt;field</code></li>
                 <li class="fragment"><code>$page-&gt;parent</code></li>
                 <li class="fragment"><code>$page-&gt;children</code></li>
                 <li class="fragment"><code>$page-&gt;children("selector")</code></li>
@@ -144,7 +144,6 @@
         <section>
             <h2><code>$pages</code></h2>
             <ul>
-                <li class="fragment"><code>$pages-&gt;get("selector")</code></li>
                 <li class="fragment"><code>$pages-&gt;find("selector")</code></li>
                 <li class="fragment"><code>$pages-&gt;count("selector")</code></li>
                 <li class="fragment"><code>$pages-&gt;save($page)</code></li>
@@ -156,9 +155,7 @@
         <section>
             <h2>Selektoren</h2>
             <ul>
-                <li class="fragment"><code>title=processwire</code></li>
-                <li class="fragment"><code>title|body=processwire</code></li>
-                <li class="fragment"><code>title*=processwire|wordpress|drupal</code></li>
+                <li class="fragment"><code>title*=processwire</code></li>
                 <li class="fragment"><code>version&gt;2</code></li>
                 <li class="fragment"><code>sort=-created,limit=10</code></li>
                 <li class="fragment">Komplexe Suchbedingungen mit AND, OR, Bedingungsgruppen und Abfrage von Untereigenschaften möglich</li>
@@ -167,15 +164,15 @@
         </section>
 
         <section>
-            <h2>Ausgesuchte weitere API-Variablen</h2>
+            <h2>Mehr API-Variablen</h2>
             <ul>
-                <li class="fragment"><a href="https://processwire.com/api/variables/input/"><code>$input</code></a>: Zugriff auf GET-, POST-, & Cookie-Daten</li>
-                <li class="fragment"><a href="https://processwire.com/api/variables/session/"><code>$session</code></a>: Zugriff auf Sessiondaten</li>
-                <li class="fragment"><a href="https://processwire.com/api/variables/user/"><code>$user</code></a>: Zugriff auf aktuellen Benutzer</li>
-                <li class="fragment"><a href="https://processwire.com/api/variables/config/"><code>$config</code></a>: Zugriff auf seitenweite Konfigurationsdaten</li>
-                <li class="fragment"><a href="https://processwire.com/api/variables/fields/"><code>$fields</code></a> &amp; <a href="https://processwire.com/api/variables/templates/"><code>$templates</code></a>: Seitenweiter Zugriff auf Felder und Templates</li>
-                <li class="fragment"><a href="https://processwire.com/api/variables/sanitizer/"><code>$sanitizer</code></a>: Funktionen für Validierung und Bereinigung von Nutzereingaben</li>
-                <li class="fragment"><a href="https://processwire.com/api/variables/log/"><code>$log</code></a>: Umgang mit Logdateien</li>
+                <li><a href="https://processwire.com/api/variables/input/"><code>$input</code></a>: Zugriff auf GET-, POST-, & Cookie-Daten</li>
+                <li><a href="https://processwire.com/api/variables/session/"><code>$session</code></a>: Zugriff auf Sessiondaten</li>
+                <li><a href="https://processwire.com/api/variables/user/"><code>$user</code></a>: Zugriff auf aktuellen Benutzer</li>
+                <li><a href="https://processwire.com/api/variables/config/"><code>$config</code></a>: Zugriff auf seitenweite Konfigurationsdaten</li>
+                <li><a href="https://processwire.com/api/variables/fields/"><code>$fields</code></a> &amp; <a href="https://processwire.com/api/variables/templates/"><code>$templates</code></a>: Seitenweiter Zugriff auf Felder und Templates</li>
+                <li><a href="https://processwire.com/api/variables/sanitizer/"><code>$sanitizer</code></a>: Funktionen für Validierung und Bereinigung von Nutzereingaben</li>
+                <li><a href="https://processwire.com/api/variables/log/"><code>$log</code></a>: Umgang mit Logdateien</li>
         </section>
 
         <section>
@@ -183,31 +180,20 @@
         </section>
 
         <section>
-            <h2>Weitere Template-Eigenschaften</h2>
+            <h2>Mehr Template-Eigenschaften</h2>
             <ul>
-                <li class="fragment">Access</li>
-                <li class="fragment">Family</li>
-                <li class="fragment">URLs</li>
-                <li class="fragment">Cache</li>
+                <li>Access</li>
+                <li>Family</li>
+                <li>URLs</li>
+                <li>Cache</li>
             </ul>
         </section>
 
         <section>
-            <h2>Modularisierung</h2>
-            <p>Mit Modulen kann die (Backend-)Funktionalität erweitert werden, z.B.:</p>
+            <h2>Modularität</h2>
             <ul>
-                <li>neue Feldtypen (Google Maps, Youtube-Video),</li>
-                <li>Backendmodule (z.B. Batchbearbeitung),</li>
-                <li>Schnittstellen (Neue Seiten per Email erstellen, Mailchimp-Newsletter aus dem Backend heraus),</li>
-                <li>&hellip;</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Modularisierung</h2>
-            <ul>
-                <li>Das komplette Backend besteht fast vollständig aus ProcessWire-Modulen, ein großer Teil aller Funktionsaufrufe ist hookbar.</li>
-                <li>Achtung: Flexibilität rächt sich beim Debuggen (<a href="https://github.com/ryancramerdesign/ProcessWire/blob/a25a8c16b027267086007e7c3bbbdcf2776f8278/wire/core/Wire.php#L292"><code>Wire::__call()</code></a>)!</li></ul>
+                <li class="fragment">Das Backend besteht fast vollständig aus ProcessWire-Modulen, ein großer Teil aller Funktionsaufrufe ist hookbar.</li>
+                <li class="fragment">Achtung: Flexibilität rächt sich beim Debuggen (<a href="https://github.com/ryancramerdesign/ProcessWire/blob/a25a8c16b027267086007e7c3bbbdcf2776f8278/wire/core/Wire.php#L292"><code>Wire::__call()</code></a>)!</li></ul>
         </section>
 
         <section>
@@ -221,12 +207,24 @@
         </section>
 
         <section>
+            <h2>Community-Module</h2>
+            <p>Mit Modulen kann die (Backend-)Funktionalität erweitert werden, z.B.:</p>
+            <ul>
+                <li>neue Feldtypen (z.B. Geoposition),</li>
+                <li>Backendmodule (z.B. Batchbearbeitung),</li>
+                <li>Schnittstellen (z.B. LDAP-Auth, Post per Mail, Mailchimp),</li>
+                <li>…<a href="http://modules.processwire.com/">und viele weitere im Module Directory</a></li>
+            </ul>
+        </section>
+
+        <section>
             <h1>Fragen?</h1>
+            <p>Gerne auch per <a href="maioto:marc@marcloehe.de">Mail</a> oder <a href="https://twitter.com/bfncs">Twitter</a>.</p>
         </section>
 
 		<section>
 			<h1>Vielen Dank!</h1>
-			<p><small>&hellip; und hier in Ruhe nachlesen:<br><a href="https://github.com/bfncs/wwms-processwire">https://github.com/bfncs/wwms-processwire</a></small></p>
+			<p><small>&hellip; und hier in Ruhe nachlesen:<br><a href="http://bfncs.github.io/wwms-processwire/">http://bfncs.github.io/wwms-processwire/</a></small></p>
 		</section>
 
         <section>
