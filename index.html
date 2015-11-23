@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+
+	<title>Hands On: ProcessWire</title>
+
+	<meta name="description" content="Hands On: ProcessWire">
+	<meta name="author" content="Marc Löhe">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+		<section>
+			<h2>Hands On: ProcessWire</h2>
+			<p>
+				<small>Von <a href="https://marcloehe.de">Marc Löhe</a> / <a href="https://twitter.com/bfncs">@bfncs</a></small>
+			</p>
+		</section>
+
+		<section>
+			<h2>Struktur</h2>
+			<ol>
+				<li>Einordnung</li>
+				<li>Konzept</li>
+				<li>API</li>
+				<li>Backend</li>
+				<li>Fragen & Links</li>
+			</ol>
+		</section>
+
+        <section>
+            <h1>Einordnung</h1>
+        </section>
+
+		<section>
+			<h2>ProcessWire</h2>
+			<ul>
+				<li>Content-Management-/Applikations-Framework</li>
+				<li>Requirements: PHP > 5.3.8, MySQL > 5.0.15, URL Rewriting, GD2</li>
+				<li>Open Source: Mozilla Public License 2.0 (GPL &lt; MPL &lt; MIT)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Zahlen</h2>
+			<img src="img/processwire-stats.png" alt="ProcessWire Github Repository Statistics">
+		</section>
+
+		<section>
+			<h2>Noch mehr Zahlen</h2>
+			<ul>
+				<li>Forum: >100k Posts, >3k Mitglieder</li>
+				<li>~500 Vorstellungen im <a href="http://processwire.com/about/sites/">Site Directory</a></li>
+				<li>~100 Entwickler im <a href="http://directory.processwire.com/developers/">Developer Directory</a></li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Geschichte</h2>
+			<ul>
+				<li>2003: Dictator CMS <em>closed source</em></li>
+				<li>2007: ProcessWire 1.x, <em>closed source</em></li>
+				<li><strong>2011: ProcessWire 2.x</strong></li>
+				<li>2016: ProcessWire 3.x</li>
+			</ul>
+		</section>
+
+        <section>
+            <h1>Konzept</h1>
+        </section>
+
+        <section>
+            <h2>„The Loop“</h2>
+            <ol>
+                <li class="fragment"><em>Template</em> (≅ Klasse) erstellen.</li>
+                <li class="fragment"><em>Field</em> (≅ Klassenattribute mit Eingabemechanismus) erstellen und <em>Template</em> hinzufügen+.</li>
+                <li class="fragment"><em>Page</em> (≅ Objekt) aus <em>Template</em> erstellen+.</li>
+                <li class="fragment"><em>Template File</em> (≠ Template) für die Ausgabe erstellen.</li>
+                <li class="fragment">Bei Bedarf wieder bei 1. beginnen.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h1>Hands On!</h1>
+            <p>Und nun zur Praxis: Beispiel CMS-Directory</p>
+        </section>
+
+        <section>
+            <h1>API</h1>
+        </section>
+
+        <section>
+            <h2>Einfache aber mächtige API</h2>
+            <p>&hellip;abgeschaut von jQuery</p>
+            <ul>
+                <li class="fragment">DOM ≅ Site Map</li>
+                <li class="fragment">Selektoren</li>
+                <li class="fragment">Traversing</li>
+                <li class="fragment">Fluent Interface</li>
+                <li class="fragment">teilweise gleiche Methodennamen (<code>find()</code>, <code>child()</code>, <code>parent()</code>, <code>siblings()</code>, etc.)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><code>$page</code></h2>
+            <ul>
+                <li class="fragment"><code>$page-&gt;id</code></li>
+                <li class="fragment"><code>$page-&gt;url</code>, <code>$page-&gt;name</code></li>
+                <li class="fragment"><code>$page-&gt;created</code>, <code>$page-&gt;modified</code></li>
+                <li class="fragment"><code>$page-&gt;get("field")</code> oder <code>page-&gt;field</code></li>
+                <li class="fragment"><code>$page-&gt;parent</code></li>
+                <li class="fragment"><code>$page-&gt;children</code></li>
+                <li class="fragment"><code>$page-&gt;children("selector")</code></li>
+                <li class="fragment">…<a href="http://cheatsheet.processwire.com/page/">und weitere</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><code>$pages</code></h2>
+            <ul>
+                <li class="fragment"><code>$pages-&gt;get("selector")</code></li>
+                <li class="fragment"><code>$pages-&gt;find("selector")</code></li>
+                <li class="fragment"><code>$pages-&gt;count("selector")</code></li>
+                <li class="fragment"><code>$pages-&gt;save($page)</code></li>
+                <li class="fragment"><code>$pages-&gt;delete($page)</code></li>
+                <li class="fragment">…<a href="http://cheatsheet.processwire.com/pages/">und weitere</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Selektoren</h2>
+            <ul>
+                <li class="fragment"><code>title=processwire</code></li>
+                <li class="fragment"><code>title|body=processwire</code></li>
+                <li class="fragment"><code>title*=processwire|wordpress|drupal</code></li>
+                <li class="fragment"><code>version&gt;2</code></li>
+                <li class="fragment"><code>sort=-created,limit=10</code></li>
+                <li class="fragment">Komplexe Suchbedingungen mit AND, OR, Bedingungsgruppen und Abfrage von Untereigenschaften möglich</li>
+                <li class="fragment">…<a href="https://processwire.com/api/selectors/">und weitere</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Ausgesuchte weitere API-Variablen</h2>
+            <ul>
+                <li class="fragment"><a href="https://processwire.com/api/variables/input/"><code>$input</code></a>: Zugriff auf GET-, POST-, & Cookie-Daten</li>
+                <li class="fragment"><a href="https://processwire.com/api/variables/session/"><code>$session</code></a>: Zugriff auf Sessiondaten</li>
+                <li class="fragment"><a href="https://processwire.com/api/variables/user/"><code>$user</code></a>: Zugriff auf aktuellen Benutzer</li>
+                <li class="fragment"><a href="https://processwire.com/api/variables/config/"><code>$config</code></a>: Zugriff auf seitenweite Konfigurationsdaten</li>
+                <li class="fragment"><a href="https://processwire.com/api/variables/fields/"><code>$fields</code></a> &amp; <a href="https://processwire.com/api/variables/templates/"><code>$templates</code></a>: Seitenweiter Zugriff auf Felder und Templates</li>
+                <li class="fragment"><a href="https://processwire.com/api/variables/sanitizer/"><code>$sanitizer</code></a>: Funktionen für Validierung und Bereinigung von Nutzereingaben</li>
+                <li class="fragment"><a href="https://processwire.com/api/variables/log/"><code>$log</code></a>: Umgang mit Logdateien</li>
+        </section>
+
+        <section>
+            <h1>Backend</h1>
+        </section>
+
+        <section>
+            <h2>Weitere Template-Eigenschaften</h2>
+            <ul>
+                <li class="fragment">Access</li>
+                <li class="fragment">Family</li>
+                <li class="fragment">URLs</li>
+                <li class="fragment">Cache</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Modularisierung</h2>
+            <p>Mit Modulen kann die (Backend-)Funktionalität erweitert werden, z.B.:</p>
+            <ul>
+                <li>neue Feldtypen (Google Maps, Youtube-Video),</li>
+                <li>Backendmodule (z.B. Batchbearbeitung),</li>
+                <li>Schnittstellen (Neue Seiten per Email erstellen, Mailchimp-Newsletter aus dem Backend heraus),</li>
+                <li>&hellip;</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Modularisierung</h2>
+            <ul>
+                <li>Das komplette Backend besteht fast vollständig aus ProcessWire-Modulen, ein großer Teil aller Funktionsaufrufe ist hookbar.</li>
+                <li>Achtung: Flexibilität rächt sich beim Debuggen (<a href="https://github.com/ryancramerdesign/ProcessWire/blob/a25a8c16b027267086007e7c3bbbdcf2776f8278/wire/core/Wire.php#L292"><code>Wire::__call()</code></a>)!</li></ul>
+        </section>
+
+        <section>
+            <h2>Wichtige Core-Module</h2>
+            <ul>
+                <li>Nutzer- &amp; Rechteverwaltung</li>
+                <li>Mehrsprachigkeit &amp; Übersetzungstools</li>
+                <li>Logging</li>
+                <li>etc.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Fragen?</h1>
+        </section>
+
+		<section>
+			<h1>Vielen Dank!</h1>
+			<p><small>&hellip; und hier in Ruhe nachlesen:<br><a href="https://github.com/bfncs/wwms-processwire">https://github.com/bfncs/wwms-processwire</a></small></p>
+		</section>
+
+        <section>
+            <h2>Links</h2>
+            <ul>
+                <li><a href="http://processwire.com/about/what/">What's Unique?</a></li>
+                <li><a href="http://processwire.com/about/why/">Why ProcessWire?</a></li>
+            </ul>
+        </section>
+
+	</div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+	// Full list of configuration options available at:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+        fragments: true,
+
+		// Optional reveal.js plugins
+		dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true },
+			{ src: 'plugin/notes/notes.js', async: true }
+		]
+	});
+
+</script>
+
+</body>
+</html>
